@@ -1,14 +1,40 @@
 package controllers
 
+import model._
 import org.quantintel.ql.time.{Date => Dt}
+import javax.ws.rs.{QueryParam, PathParam}
+
+import com.wordnik.swagger.annotations._
+import com.wordnik.swagger.core.util.ScalaJsonUtil
+
 import play.api.mvc._
 
 
-object Date extends Controller {
+@Api(value ="/date",
+  description = "Date related operations")
+class DateController extends BaseApiController {
 
-  def today = Action {
-    Ok(views.html.today(String.valueOf(Dt.todaysDate.serialNumber)))
+  def getOptions(path: String) = Action {
+    implicit request => JsonResponse(new value.ApiResponse(200, "Ok"))
   }
+
+  @ApiOperation(
+    nickname = "today",
+    value = "today's serial number",
+    notes = "returns serial number of current date",
+    response = classOf[scala.Long],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+      new ApiResponse(code = 400, message = "Required parameter missing"),
+      new ApiResponse(code = 404, message = "todays serial number not found")))
+  def today = Action {
+      var res = new SingleValue(Dt.todaysDate.serialNumber)
+
+    JsonResponse(res)
+
+  }
+
+
 
   def todaySimpleFmt = Action {
     Ok(views.html.todaySimpleFmt(String.valueOf(Dt.todaysDate)))
@@ -93,3 +119,5 @@ object Date extends Controller {
 
 
 }
+
+object DateController {}

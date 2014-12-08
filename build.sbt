@@ -26,12 +26,13 @@ libraryDependencies ++= Seq( jdbc , anorm , cache , ws )
 
 
 libraryDependencies ++= Seq(
-    "org.quantintel" % "spectrum-financial_2.11" % "0.0.1-SNAPSHOT")
+    "org.quantintel" % "spectrum-financial_2.11" % "0.0.1-SNAPSHOT",
+    "com.wordnik" %% "swagger-play2" % "1.3.10")
 
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
-/*
+
 
 publishMavenStyle := true
 
@@ -70,4 +71,3 @@ pomExtra := (
       </developer>
     </developers>)
 
-    */
