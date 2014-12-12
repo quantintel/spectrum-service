@@ -9,5 +9,5 @@ import scala.annotation.meta.field
  *
  * @author Paul Bernard
  */
-@ApiModel("SingleValue")
+@ApiModel("SingleLongValue")
 case class SingleLongValue(@(ApiModelProperty @field)(position=1) value: Long)
