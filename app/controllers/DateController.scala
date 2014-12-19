@@ -32,7 +32,7 @@ class DateController extends BaseApiController {
     nickname = "today",
     value = "today's serial number",
     notes = "returns serial number of current date",
-    response = classOf[scala.Long],
+    response = classOf[model.SingleLongValue],
     httpMethod = "GET")
   @ApiResponses(Array(
       new ApiResponse(code = 400, message = "Required parameter missing"),
@@ -54,7 +54,7 @@ class DateController extends BaseApiController {
     nickname = "todaySimpleFmt",
     value = "today's date in SimpleFormat",
     notes = "returns the current date formatted in SimpleFormat",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -77,7 +77,7 @@ class DateController extends BaseApiController {
     nickname = "simpleFmt",
     value = "today's date",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET"
     )
   @ApiResponses(Array(
@@ -104,7 +104,7 @@ class DateController extends BaseApiController {
     nickname = "weekday",
     value = "the current day of the week",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -124,7 +124,7 @@ class DateController extends BaseApiController {
     nickname = "dtWeekday",
     value = "the day of the week associated with the serial number provided",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -151,7 +151,7 @@ class DateController extends BaseApiController {
     nickname = "dtstrWeekday",
     value = "the day of the week for the corresponding dd, mm, yyyy indicated",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -167,7 +167,7 @@ class DateController extends BaseApiController {
     nickname = "year",
     value = "year of the current date",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -183,7 +183,7 @@ class DateController extends BaseApiController {
     nickname = "dtYear",
     value = "year of the serial number provided",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -203,7 +203,7 @@ class DateController extends BaseApiController {
     nickname = "dtstrYear",
     value = "date for the mm dd and yy indicated.",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -219,7 +219,7 @@ class DateController extends BaseApiController {
     nickname = "month",
     value = "month for the current date",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -235,7 +235,7 @@ class DateController extends BaseApiController {
     nickname = "dtMonth",
     value = "month for the date provided",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -255,7 +255,7 @@ class DateController extends BaseApiController {
     nickname = "dtstrMonth",
     value = "month for the date provided",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -271,7 +271,7 @@ class DateController extends BaseApiController {
     nickname = "dayOfMonth",
     value = "day of the month for the current date.",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -287,7 +287,7 @@ class DateController extends BaseApiController {
     nickname = "dtDayOfMonth",
     value = "day of the month for the date provided",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -307,7 +307,7 @@ class DateController extends BaseApiController {
     nickname = "dtstrDayOfMonth",
     value = "day of the month for the date provided",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -322,7 +322,7 @@ class DateController extends BaseApiController {
     nickname = "dayOfYear",
     value = "day of the current year",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -337,7 +337,7 @@ class DateController extends BaseApiController {
     nickname = "dtDayOfYear ",
     value = "day of year for the date provided",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -356,7 +356,7 @@ class DateController extends BaseApiController {
     nickname = "dtstrDayOfYear ",
     value = "day of year for the date provided",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -372,7 +372,7 @@ class DateController extends BaseApiController {
     nickname = "isLeapYear",
     value = "returns whether the current year is a leap year.",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -387,7 +387,7 @@ class DateController extends BaseApiController {
     nickname = "dtIsLeapYear",
     value = "returns whether the date provided is within a leap year.",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -406,7 +406,7 @@ class DateController extends BaseApiController {
     nickname = "dtstrIsLeapYear ",
     value = "returns whether the date provided is within a leap year.",
     notes = "",
-    response = classOf[String],
+    response = classOf[model.SingleStringValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
