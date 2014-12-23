@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2014  Paul Bernard
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Spectrum Finance is based in part on:
+ *        QuantLib. http://quantlib.org/
+ *
+ */
+
 package controllers
 
 import model._
@@ -67,32 +87,7 @@ class DateController extends BaseApiController {
   }
 
 
-  /**
-   * This method returns the simple formatted date of the serial number provided.
-   *
-   * @param num a serial number associated with a given date.
-   * @return the mmddyyyy formatted version of the serial number.
-   */
-  @ApiOperation(
-    nickname = "simpleFmt",
-    value = "today's date",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET"
-    )
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def simpleFmt(
-        @ApiParam(value = "date serial number", required = true)
-        @PathParam("serialNumber")
-        @Path("/date/(serialNumber}/mmddyyyy")
-        num: Long) = Action {
 
-    val res = new SingleStringValue(String.valueOf(Dt(num)))
-    JsonResponse(res)
-
-  }
 
 
   /**
@@ -114,54 +109,6 @@ class DateController extends BaseApiController {
     JsonResponse(res)
   }
 
-  /**
-   * This function returns the cooresponding day of the week for the serial number provided.
-   *
-   * @param num serial number for a given date
-   * @return the day of the week for the date indicated.
-   */
-  @ApiOperation(
-    nickname = "dtWeekday",
-    value = "the day of the week associated with the serial number provided",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def dtWeekday(
-                 @ApiParam(value = "date serial number", required = true)
-                 @PathParam("serialNumber")
-                 @Path("/date/(serialNumber}/weekday")
-                 num: Long) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).weekday))
-    JsonResponse(res)
-  }
-
-
-  /**
-   * Returns the current weekday based upon the mm, dd, yyyy indicated.
-   *
-   * @param mm two digits representing the current month 01, 02, etc.
-   * @param dd two digit representing the current day of the month 01, 02, etc.
-   * @param yy four digit integer representing the current year.
-   * @return The day of the week for the date indicated.
-   */
-  @ApiOperation(
-    nickname = "dtstrWeekday",
-    value = "the day of the week for the corresponding dd, mm, yyyy indicated",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def dtstrWeekday(mm: Int, dd: Int, yy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).weekday))
-    JsonResponse(res)
-  }
-
-
 
   @ApiOperation(
     nickname = "year",
@@ -177,44 +124,6 @@ class DateController extends BaseApiController {
     JsonResponse(res)
   }
 
-
-
-  @ApiOperation(
-    nickname = "dtYear",
-    value = "year of the serial number provided",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def dtYear (
-               @ApiParam(value = "date serial number", required = true)
-               @PathParam("serialNumber")
-               @Path("/date/(serialNumber}/year")
-               num: Long) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).year))
-    JsonResponse(res)
-  }
-
-
-
-  @ApiOperation(
-    nickname = "dtstrYear",
-    value = "date for the mm dd and yy indicated.",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def dtstrYear (mm: Int, dd: Int, yy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).year))
-    JsonResponse(res)
-  }
-
-
-
   @ApiOperation(
     nickname = "month",
     value = "month for the current date",
@@ -229,44 +138,6 @@ class DateController extends BaseApiController {
     JsonResponse(res)
   }
 
-
-
-  @ApiOperation(
-    nickname = "dtMonth",
-    value = "month for the date provided",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def dtMonth (
-                @ApiParam(value = "date serial number", required = true)
-                @PathParam("serialNumber")
-                @Path("/date/(serialNumber}/month")
-                num: Long) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).month))
-    JsonResponse(res)
-  }
-
-
-
-  @ApiOperation(
-    nickname = "dtstrMonth",
-    value = "month for the date provided",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def dtstrMonth (mm: Int, dd: Int, yy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).month))
-    JsonResponse(res)
-  }
-
-
-
   @ApiOperation(
     nickname = "dayOfMonth",
     value = "day of the month for the current date.",
@@ -278,42 +149,6 @@ class DateController extends BaseApiController {
   ))
   def dayOfMonth = Action {
     val res = new SingleStringValue(String.valueOf(Dt.todaysDate.dayOfMonth))
-    JsonResponse(res)
-  }
-
-
-
-  @ApiOperation(
-    nickname = "dtDayOfMonth",
-    value = "day of the month for the date provided",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def dtDayOfMonth (
-                     @ApiParam(value = "date serial number", required = true)
-                     @PathParam("serialNumber")
-                     @Path("/date/(serialNumber}/dayOfMonth")
-                     num: Long) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).dayOfMonth))
-    JsonResponse(res)
-  }
-
-
-
-  @ApiOperation(
-    nickname = "dtstrDayOfMonth",
-    value = "day of the month for the date provided",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def dtstrDayOfMonth (mm: Int, dd: Int, yy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).dayOfMonth))
     JsonResponse(res)
   }
 
@@ -334,6 +169,129 @@ class DateController extends BaseApiController {
 
 
   @ApiOperation(
+    nickname = "isLeapYear",
+    value = "returns whether the current year is a leap year.",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def isLeapYear = Action {
+    val res = new SingleStringValue(String.valueOf(Dt.todaysDate.isLeapYear))
+    JsonResponse(res)
+  }
+
+  // end of parameterless functions.
+
+
+  /**
+   * This method returns the simple formatted date of the serial number provided.
+   *
+   * @param num a serial number associated with a given date.
+   * @return the mmddyyyy formatted version of the serial number.
+   */
+  @ApiOperation(
+    nickname = "simpleFmt",
+    value = "today's date",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET"
+  )
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def simpleFmt(
+                 @ApiParam(value = "date serial number", required = true)
+                 @PathParam("serialNumber")
+                 @Path("/date/{serialNumber}/mmddyyyy")
+                 num: Long) = Action {
+
+    val res = new SingleStringValue(String.valueOf(Dt(num)))
+    JsonResponse(res)
+
+  }
+
+
+  /**
+   * This function returns the corresponding day of the week for the serial number provided.
+   *
+   * @param num serial number for a given date
+   * @return the day of the week for the date indicated.
+   */
+  @ApiOperation(
+    nickname = "dtWeekday",
+    value = "the day of the week associated with the serial number provided",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def dtWeekday(
+                 @ApiParam(value = "date serial number", required = true)
+                 @PathParam("serialNumber")
+                 @Path("/date/{serialNumber}/weekday")
+                 num: Long) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(num).weekday))
+    JsonResponse(res)
+  }
+
+  @ApiOperation(
+    nickname = "dtYear",
+    value = "year of the serial number provided",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def dtYear (
+               @ApiParam(value = "date serial number", required = true)
+               @PathParam("serialNumber")
+               @Path("/date/{serialNumber}/year")
+               num: Long) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(num).year))
+    JsonResponse(res)
+  }
+
+  @ApiOperation(
+    nickname = "dtMonth",
+    value = "month for the date provided",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def dtMonth (
+                @ApiParam(value = "date serial number", required = true)
+                @PathParam("serialNumber")
+                @Path("/date/{serialNumber}/month")
+                num: Long) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(num).month))
+    JsonResponse(res)
+  }
+
+  @ApiOperation(
+    nickname = "dtDayOfMonth",
+    value = "day of the month for the date provided",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def dtDayOfMonth (
+                     @ApiParam(value = "date serial number", required = true)
+                     @PathParam("serialNumber")
+                     @Path("/date/{serialNumber}/dayOfMonth")
+                     num: Long) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(num).dayOfMonth))
+    JsonResponse(res)
+  }
+
+  @ApiOperation(
     nickname = "dtDayOfYear ",
     value = "day of year for the date provided",
     notes = "",
@@ -345,40 +303,9 @@ class DateController extends BaseApiController {
   def dtDayOfYear (
                     @ApiParam(value = "date serial number", required = true)
                     @PathParam("serialNumber")
-                    @Path("/date/(serialNumber}/dayOfYear")
+                    @Path("/date/{serialNumber}/dayOfYear")
                     num: Long)  = Action {
     val res = new SingleStringValue(String.valueOf(Dt(num).dayOfYear))
-    JsonResponse(res)
-  }
-
-
-  @ApiOperation(
-    nickname = "dtstrDayOfYear ",
-    value = "day of year for the date provided",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def dtstrDayOfYear (mm: Int, dd: Int, yy: Int)  = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).dayOfYear))
-    JsonResponse(res)
-  }
-
-
-
-  @ApiOperation(
-    nickname = "isLeapYear",
-    value = "returns whether the current year is a leap year.",
-    notes = "",
-    response = classOf[model.SingleStringValue],
-    httpMethod = "GET")
-  @ApiResponses(Array(
-    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
-  ))
-  def isLeapYear = Action {
-    val res = new SingleStringValue(String.valueOf(Dt.todaysDate.isLeapYear))
     JsonResponse(res)
   }
 
@@ -395,11 +322,158 @@ class DateController extends BaseApiController {
   def dtIsLeapYear (
                      @ApiParam(value = "date serial number", required = true)
                      @PathParam("serialNumber")
-                     @Path("/date/(serialNumber}/isLeapYear")
+                     @Path("/date/{serialNumber}/isLeapYear")
                      num: Long)  = Action {
     val res = new SingleStringValue(String.valueOf(Dt(num).isLeapYear))
     JsonResponse(res)
   }
+
+
+
+  // end of serial number based functions
+
+
+  /**
+   * Returns the current weekday based upon the mm, dd, yyyy indicated.
+   *
+   * @param mm two digits representing the current month 01, 02, etc.
+   * @param dd two digit representing the current day of the month 01, 02, etc.
+   * @param yy four digit integer representing the current year.
+   * @return The day of the week for the date indicated.
+   */
+  @ApiOperation(
+    nickname = "dtstrWeekday",
+    value = "the day of the week for the corresponding dd, mm, yyyy indicated",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def dtstrWeekday( @ApiParam(value = "mm - month", required = true)
+                    @PathParam("mm")
+                    @Path("/date/{mm}/{dd}/{yy}/weekday")
+                    mm: Int,
+                    @ApiParam(value = "dd - day of month", required = true)
+                    @PathParam("dd")
+                    @Path("/date/{mm}/{dd}/{yy}/weekday")
+                    dd: Int,
+                    @ApiParam(value = "yy - yyyy year", required = true)
+                    @PathParam("yy")
+                    @Path("/date/{mm}/{dd}/{yy}/weekday")
+                    yy: Int) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).weekday))
+    JsonResponse(res)
+  }
+
+
+
+  @ApiOperation(
+    nickname = "dtstrYear",
+    value = "date for the mm dd and yy indicated.",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def dtstrYear ( @ApiParam(value = "mm - month", required = true)
+                  @PathParam("mm")
+                  @Path("/date/{mm}/{dd}/{yy}/year")
+                  mm: Int,
+                  @ApiParam(value = "dd - day of month", required = true)
+                  @PathParam("dd")
+                  @Path("/date/{mm}/{dd}/{yy}/year")
+                  dd: Int,
+                  @ApiParam(value = "yy - yyyy year", required = true)
+                  @PathParam("yy")
+                  @Path("/date/{mm}/{dd}/{yy}/year")
+                  yy: Int) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).year))
+    JsonResponse(res)
+  }
+
+
+
+
+  @ApiOperation(
+    nickname = "dtstrMonth",
+    value = "month for the date provided",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def dtstrMonth ( @ApiParam(value = "mm - month", required = true)
+                   @PathParam("mm")
+                   @Path("/date/{mm}/{dd}/{yy}/month")
+                   mm: Int,
+                   @ApiParam(value = "dd - day of month", required = true)
+                   @PathParam("dd")
+                   @Path("/date/{mm}/{dd}/{yy}/month")
+                   dd: Int,
+                   @ApiParam(value = "yy - yyyy year", required = true)
+                   @PathParam("yy")
+                   @Path("/date/{mm}/{dd}/{yy}/month")
+                   yy: Int) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).month))
+    JsonResponse(res)
+  }
+
+
+
+  @ApiOperation(
+    nickname = "dtstrDayOfMonth",
+    value = "day of the month for the date provided",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def dtstrDayOfMonth ( @ApiParam(value = "mm - month", required = true)
+                        @PathParam("mm")
+                        @Path("/date/{mm}/{dd}/{yy}/dayOfMonth")
+                        mm: Int,
+                        @ApiParam(value = "dd - day of month", required = true)
+                        @PathParam("dd")
+                        @Path("/date/{mm}/{dd}/{yy}/dayOfMonth")
+                        dd: Int,
+                        @ApiParam(value = "yy - yyyy year", required = true)
+                        @PathParam("yy")
+                        @Path("/date/{mm}/{dd}/{yy}/dayOfMonth")
+                        yy: Int) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).dayOfMonth))
+    JsonResponse(res)
+  }
+
+
+  @ApiOperation(
+    nickname = "dtstrDayOfYear ",
+    value = "day of year for the date provided",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def dtstrDayOfYear (@ApiParam(value = "mm - month", required = true)
+                      @PathParam("mm")
+                      @Path("/date/{mm}/{dd}/{yy}/dayOfYear")
+                      mm: Int,
+                      @ApiParam(value = "dd - day of month", required = true)
+                      @PathParam("dd")
+                      @Path("/date/{mm}/{dd}/{yy}/dayOfYear")
+                      dd: Int,
+                      @ApiParam(value = "yy - yyyy year", required = true)
+                      @PathParam("yy")
+                      @Path("/date/{mm}/{dd}/{yy}/dayOfYear")
+                      yy: Int)  = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).dayOfYear))
+    JsonResponse(res)
+  }
+
 
 
   @ApiOperation(
@@ -411,7 +485,18 @@ class DateController extends BaseApiController {
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
   ))
-  def dtstrIsLeapYear (mm: Int, dd: Int, yy: Int)  = Action {
+  def dtstrIsLeapYear (@ApiParam(value = "mm - month", required = true)
+                       @PathParam("mm")
+                       @Path("/date/{mm}/{dd}/{yy}/isLeapYear")
+                       mm: Int,
+                       @ApiParam(value = "dd - day of month", required = true)
+                       @PathParam("dd")
+                       @Path("/date/{mm}/{dd}/{yy}/isLeapYear")
+                       dd: Int,
+                       @ApiParam(value = "yy - yyyy year", required = true)
+                       @PathParam("yy")
+                       @Path("/date/{mm}/{dd}/{yy}/isLeapYear")
+                       yy: Int)  = Action {
     val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).isLeapYear))
     JsonResponse(res)
   }
