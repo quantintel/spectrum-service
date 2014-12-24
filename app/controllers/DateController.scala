@@ -338,7 +338,7 @@ class DateController extends BaseApiController {
    *
    * @param mm two digits representing the current month 01, 02, etc.
    * @param dd two digit representing the current day of the month 01, 02, etc.
-   * @param yy four digit integer representing the current year.
+   * @param yyyy four digit integer representing the current year.
    * @return The day of the week for the date indicated.
    */
   @ApiOperation(
@@ -352,17 +352,17 @@ class DateController extends BaseApiController {
   ))
   def dtstrWeekday( @ApiParam(value = "mm - month", required = true)
                     @PathParam("mm")
-                    @Path("/date/{mm}/{dd}/{yy}/weekday")
+                    @Path("/date/{mm}/{dd}/{yyyy}/weekday")
                     mm: Int,
                     @ApiParam(value = "dd - day of month", required = true)
                     @PathParam("dd")
-                    @Path("/date/{mm}/{dd}/{yy}/weekday")
+                    @Path("/date/{mm}/{dd}/{yyyy}/weekday")
                     dd: Int,
                     @ApiParam(value = "yy - yyyy year", required = true)
-                    @PathParam("yy")
-                    @Path("/date/{mm}/{dd}/{yy}/weekday")
-                    yy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).weekday))
+                    @PathParam("yyyy")
+                    @Path("/date/{mm}/{dd}/{yyyy}/weekday")
+                    yyyy: Int) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).weekday))
     JsonResponse(res)
   }
 
@@ -379,17 +379,17 @@ class DateController extends BaseApiController {
   ))
   def dtstrYear ( @ApiParam(value = "mm - month", required = true)
                   @PathParam("mm")
-                  @Path("/date/{mm}/{dd}/{yy}/year")
+                  @Path("/date/{mm}/{dd}/{yyyy}/year")
                   mm: Int,
                   @ApiParam(value = "dd - day of month", required = true)
                   @PathParam("dd")
-                  @Path("/date/{mm}/{dd}/{yy}/year")
+                  @Path("/date/{mm}/{dd}/{yyyy}/year")
                   dd: Int,
                   @ApiParam(value = "yy - yyyy year", required = true)
-                  @PathParam("yy")
-                  @Path("/date/{mm}/{dd}/{yy}/year")
-                  yy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).year))
+                  @PathParam("yyyy")
+                  @Path("/date/{mm}/{dd}/{yyyy}/year")
+                  yyyy: Int) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).year))
     JsonResponse(res)
   }
 
@@ -407,17 +407,17 @@ class DateController extends BaseApiController {
   ))
   def dtstrMonth ( @ApiParam(value = "mm - month", required = true)
                    @PathParam("mm")
-                   @Path("/date/{mm}/{dd}/{yy}/month")
+                   @Path("/date/{mm}/{dd}/{yyyy}/month")
                    mm: Int,
                    @ApiParam(value = "dd - day of month", required = true)
                    @PathParam("dd")
-                   @Path("/date/{mm}/{dd}/{yy}/month")
+                   @Path("/date/{mm}/{dd}/{yyyy}/month")
                    dd: Int,
                    @ApiParam(value = "yy - yyyy year", required = true)
                    @PathParam("yy")
-                   @Path("/date/{mm}/{dd}/{yy}/month")
-                   yy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).month))
+                   @Path("/date/{mm}/{dd}/{yyyy}/month")
+                   yyyy: Int) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).month))
     JsonResponse(res)
   }
 
@@ -434,17 +434,17 @@ class DateController extends BaseApiController {
   ))
   def dtstrDayOfMonth ( @ApiParam(value = "mm - month", required = true)
                         @PathParam("mm")
-                        @Path("/date/{mm}/{dd}/{yy}/dayOfMonth")
+                        @Path("/date/{mm}/{dd}/{yyyy}/dayOfMonth")
                         mm: Int,
                         @ApiParam(value = "dd - day of month", required = true)
                         @PathParam("dd")
-                        @Path("/date/{mm}/{dd}/{yy}/dayOfMonth")
+                        @Path("/date/{mm}/{dd}/{yyyy}/dayOfMonth")
                         dd: Int,
                         @ApiParam(value = "yy - yyyy year", required = true)
                         @PathParam("yy")
-                        @Path("/date/{mm}/{dd}/{yy}/dayOfMonth")
-                        yy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).dayOfMonth))
+                        @Path("/date/{mm}/{dd}/{yyyy}/dayOfMonth")
+                        yyyy: Int) = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).dayOfMonth))
     JsonResponse(res)
   }
 
@@ -460,17 +460,17 @@ class DateController extends BaseApiController {
   ))
   def dtstrDayOfYear (@ApiParam(value = "mm - month", required = true)
                       @PathParam("mm")
-                      @Path("/date/{mm}/{dd}/{yy}/dayOfYear")
+                      @Path("/date/{mm}/{dd}/{yyyy}/dayOfYear")
                       mm: Int,
                       @ApiParam(value = "dd - day of month", required = true)
                       @PathParam("dd")
-                      @Path("/date/{mm}/{dd}/{yy}/dayOfYear")
+                      @Path("/date/{mm}/{dd}/{yyyy}/dayOfYear")
                       dd: Int,
                       @ApiParam(value = "yy - yyyy year", required = true)
-                      @PathParam("yy")
-                      @Path("/date/{mm}/{dd}/{yy}/dayOfYear")
-                      yy: Int)  = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).dayOfYear))
+                      @PathParam("yyyy")
+                      @Path("/date/{mm}/{dd}/{yyyy}/dayOfYear")
+                      yyyy: Int)  = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).dayOfYear))
     JsonResponse(res)
   }
 
@@ -487,17 +487,17 @@ class DateController extends BaseApiController {
   ))
   def dtstrIsLeapYear (@ApiParam(value = "mm - month", required = true)
                        @PathParam("mm")
-                       @Path("/date/{mm}/{dd}/{yy}/isLeapYear")
+                       @Path("/date/{mm}/{dd}/{yyyy}/isLeapYear")
                        mm: Int,
                        @ApiParam(value = "dd - day of month", required = true)
                        @PathParam("dd")
-                       @Path("/date/{mm}/{dd}/{yy}/isLeapYear")
+                       @Path("/date/{mm}/{dd}/{yyyy}/isLeapYear")
                        dd: Int,
                        @ApiParam(value = "yy - yyyy year", required = true)
-                       @PathParam("yy")
-                       @Path("/date/{mm}/{dd}/{yy}/isLeapYear")
-                       yy: Int)  = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yy).isLeapYear))
+                       @PathParam("yyyy")
+                       @Path("/date/{mm}/{dd}/{yyyy}/isLeapYear")
+                       yyyy: Int)  = Action {
+    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).isLeapYear))
     JsonResponse(res)
   }
 
