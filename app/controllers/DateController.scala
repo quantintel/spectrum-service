@@ -414,7 +414,7 @@ class DateController extends BaseApiController {
                    @Path("/date/{mm}/{dd}/{yyyy}/month")
                    dd: Int,
                    @ApiParam(value = "yy - yyyy year", required = true)
-                   @PathParam("yy")
+                   @PathParam("yyyy")
                    @Path("/date/{mm}/{dd}/{yyyy}/month")
                    yyyy: Int) = Action {
     val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).month))
@@ -441,7 +441,7 @@ class DateController extends BaseApiController {
                         @Path("/date/{mm}/{dd}/{yyyy}/dayOfMonth")
                         dd: Int,
                         @ApiParam(value = "yy - yyyy year", required = true)
-                        @PathParam("yy")
+                        @PathParam("yyyy")
                         @Path("/date/{mm}/{dd}/{yyyy}/dayOfMonth")
                         yyyy: Int) = Action {
     val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).dayOfMonth))
