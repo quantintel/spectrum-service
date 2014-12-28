@@ -10,3 +10,9 @@ The service utilizes:
 ** http://swagger.io
 - dropwizard metrics (formerly codahale metrics, formerly yammer metrics)
 ** http://dropwizard.io
+- Grizzled SLF4J
+** http://software.clapper.org/grizzled-slf4j/
+- Metrics / Codahale / dropwizard
+** https://dropwizard.github.io/metrics
+
+
