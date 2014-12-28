@@ -6,6 +6,8 @@ import AssemblyKeys._
 //assemblySettings
 seq(assemblySettings: _*)
 
+seq(bintrayResolverSettings:_*)
+
 lazy val `spectrumfinsvcs` = (project in file(".")).enablePlugins(PlayScala)
 
 name := "spectrum-service"
@@ -29,17 +31,19 @@ resolvers ++=Seq("central" at "http://repo1.maven.org/maven2/",
 
 
 libraryDependencies ++= Seq(
-  "org.json4s"                  %% "json4s-jackson"     % "3.2.10",
-  "io.backchat.inflector"       %% "scala-inflector"    % "1.3.5",
-  "commons-io"                   % "commons-io"         % "2.3" % "provided",
-  "net.iharder"                  % "base64"             % "2.3.8",
-  "ch.qos.logback"               % "logback-classic"    % "1.0.13" % "provided",
-  "org.rogach"                  %% "scallop"            % "0.9.5",
-  "junit"                        % "junit"              % "4.11" % "test",
-  "org.scalatest"               %% "scalatest"          % "2.1.7" % "test",
-  "com.wordnik"                 % "swagger-codegen_2.11.1" % "2.0.17",
-  "com.wordnik"                 % "swagger-play2_2.11"  % "1.3.11" ,
-  "com.wordnik"                 % "swagger-play2-utils_2.11" % "1.3.11"
+  "org.json4s"                    %% "json4s-jackson"           % "3.2.10",
+  "io.backchat.inflector"         %% "scala-inflector"          % "1.3.5",
+  "commons-io"                    % "commons-io"                % "2.3" % "provided",
+  "net.iharder"                   % "base64"                    % "2.3.8",
+  "ch.qos.logback"                % "logback-classic"           % "1.0.13" % "provided",
+  "org.rogach"                    %% "scallop"                  % "0.9.5",
+  "junit"                         % "junit"                     % "4.11" % "test",
+  "org.scalatest"                 %% "scalatest"                % "2.1.7" % "test",
+  "com.wordnik"                   % "swagger-codegen_2.11.1"    % "2.0.17",
+  "com.wordnik"                   % "swagger-play2_2.11"        % "1.3.11" ,
+  "com.wordnik"                   % "swagger-play2-utils_2.11"  % "1.3.11",
+  "io.dropwizard"                 % "dropwizard-metrics"        % "0.7.1",
+  "org.clapper"                   %% "grizzled-slf4j"           % "1.0.2"
 )
 
 libraryDependencies ++= Seq( jdbc , anorm , cache , ws )
