@@ -73,13 +73,13 @@ class DateController extends BaseApiController {
   def serialNumber (
                     @ApiParam(value = "month", required = true)
                     @PathParam("mm")
-                    @Path("/date/serialnumber/{mm}/{dd}/{yyyy}") mm : Int,
+                    @Path("/date/{mm}/{dd}/{yyyy}/serialnumber") mm : Int,
                     @ApiParam(value = "day", required = true)
                     @PathParam("dd")
-                    @Path("/date/serialnumber/{mm}/{dd}/{yyyy}") dd: Int,
+                    @Path("/date/{mm}/{dd}/{yyyy}/serialnumber") dd: Int,
                     @ApiParam(value = "yyyy", required = true)
                     @PathParam("year")
-                    @Path("/date/serialnumber/{mm}/{dd}/{yyyy}") yyyy: Int) = Action {
+                    @Path("/date/{mm}/{dd}/{yyyy}/serialnumber") yyyy: Int) = Action {
 
     import org.quantintel.ql.time.Month._
 
@@ -571,7 +571,7 @@ class DateController extends BaseApiController {
   def incrBy(
               @ApiParam(value = "n", required = true)
               @PathParam("d")
-              @Path("/date/today/incr/{n}") n: Int) = Action {
+              @Path("/date/today/{n}/incr") n: Int) = Action {
 
     val res = new SingleLongValue(Dt.todaysDate.serialNumber + n)
     JsonResponse(res)
@@ -607,7 +607,7 @@ class DateController extends BaseApiController {
   def decrBy(
               @ApiParam(value = "n", required = true)
               @PathParam("d")
-              @Path("/date/today/decr/{n}") n: Int) = Action {
+              @Path("/date/today/{n}/decr") n: Int) = Action {
 
     val res = new SingleLongValue(Dt.todaysDate.serialNumber - n)
     JsonResponse(res)
