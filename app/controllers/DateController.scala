@@ -64,6 +64,46 @@ class DateController extends BaseApiController {
 
   }
 
+  @ApiOperation(
+    nickname = "serialNumber",
+    value = "serial number of date: mm/dd/yyyy",
+    notes = "returns serial number of the date provided",
+    response = classOf[model.SingleLongValue],
+    httpMethod = "GET")
+  def serialNumber (
+                    @ApiParam(value = "month", required = true)
+                    @PathParam("mm")
+                    @Path("/date/serialnumber/{mm}/{dd}/{yyyy}") mm : Int,
+                    @ApiParam(value = "day", required = true)
+                    @PathParam("dd")
+                    @Path("/date/serialnumber/{mm}/{dd}/{yyyy}") dd: Int,
+                    @ApiParam(value = "yyyy", required = true)
+                    @PathParam("serialNumber")
+                    @Path("/date/serialnumber/{mm}/{dd}/{yyyy}") yyyy: Int) = Action {
+
+    import org.quantintel.ql.time.Month._
+
+    var mon : Month = null
+
+    mm match {
+      case 1 => mon = JANUARY
+      case 2 => mon = FEBRUARY
+      case 3 => mon = MARCH
+      case 4 => mon = APRIL
+      case 5 => mon = MAY
+      case 6 => mon = JUNE
+      case 7 => mon = JULY
+      case 8 => mon = AUGUST
+      case 9 => mon = SEPTEMBER
+      case 10 => mon = OCTOBER
+      case 11 => mon = NOVEMBER
+      case 12 => mon = DECEMBER
+    }
+
+    val res = new SingleLongValue(Dt(dd, mon, yyyy).serialNumber)
+    JsonResponse(res)
+  }
+
 
   /**
    * This method returns the current date formatted as mmddyyyy
@@ -499,6 +539,79 @@ class DateController extends BaseApiController {
                        yyyy: Int)  = Action {
     val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).isLeapYear))
     JsonResponse(res)
+  }
+
+
+  // utility methods
+
+  @ApiOperation(
+    nickname = "incr",
+    value = "increments the current days serial number by one.",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def incr() = Action {
+
+    val res = new SingleLongValue(Dt.todaysDate.serialNumber + 1)
+    JsonResponse(res)
+  }
+
+  @ApiOperation(
+    nickname = "incrBy",
+    value = "increments the current days serial number by the number of units indicated.",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def incrBy(
+              @ApiParam(value = "n", required = true)
+              @PathParam("d")
+              @Path("/date/today/incr/{n}") n: Int) = Action {
+
+    val res = new SingleLongValue(Dt.todaysDate.serialNumber + n)
+    JsonResponse(res)
+
+  }
+
+
+  @ApiOperation(
+    nickname = "decr",
+    value = "decrements the current days serial number by one.",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def decr() = Action {
+
+    val res = new SingleLongValue(Dt.todaysDate.serialNumber - 1)
+    JsonResponse(res)
+
+  }
+
+  @ApiOperation(
+    nickname = "decrBy",
+    value = "decrements the current days serial number by the number of units indicated.",
+    notes = "",
+    response = classOf[model.SingleStringValue],
+    httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
+  ))
+  def decrBy(
+              @ApiParam(value = "n", required = true)
+              @PathParam("d")
+              @Path("/date/today/decr/{n}") n: Int) = Action {
+
+    val res = new SingleLongValue(Dt.todaysDate.serialNumber - n)
+    JsonResponse(res)
+
   }
 
 
