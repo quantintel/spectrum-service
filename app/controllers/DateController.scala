@@ -20,9 +20,11 @@
 
 package controllers
 
+import com.codahale.metrics.{Timer, Meter}
+import grizzled.slf4j.Logging
 import model._
 import org.quantintel.ql.time.{Date => Dt}
-import javax.ws.rs.{Path, QueryParam, PathParam}
+import javax.ws.rs.{Path, PathParam}
 
 import com.wordnik.swagger.annotations._
 
@@ -31,7 +33,7 @@ import play.api.mvc._
 
 @Api(value ="/date",
   description = "Date related operations")
-class DateController extends BaseApiController {
+class DateController extends BaseApiController with Logging {
 
   /**
    *
@@ -59,7 +61,14 @@ class DateController extends BaseApiController {
       new ApiResponse(code = 404, message = "todays serial number not found")))
   def today = Action {
 
+    DateController.invocationToday.mark
+
+    val context : Timer.Context = DateController.invocationTodayTimer.time
+
     val res = new SingleLongValue(Dt.todaysDate.serialNumber)
+
+    context.stop()
+
     JsonResponse(res)
 
   }
@@ -81,27 +90,46 @@ class DateController extends BaseApiController {
                     @PathParam("yyyy")
                     @Path("/date/{mm}/{dd}/{yyyy}/serialnumber") yyyy: Int) = Action {
 
-    import org.quantintel.ql.time.Month._
+    DateController.invocationSerialNumber.mark
 
-    var mon : Month = null
+    val context : Timer.Context = DateController.invocationSerialNumberTimer.time
 
-    mm match {
-      case 1 => mon = JANUARY
-      case 2 => mon = FEBRUARY
-      case 3 => mon = MARCH
-      case 4 => mon = APRIL
-      case 5 => mon = MAY
-      case 6 => mon = JUNE
-      case 7 => mon = JULY
-      case 8 => mon = AUGUST
-      case 9 => mon = SEPTEMBER
-      case 10 => mon = OCTOBER
-      case 11 => mon = NOVEMBER
-      case 12 => mon = DECEMBER
+    try {
+
+
+
+      import org.quantintel.ql.time.Month._
+
+      var mon : Month = null
+
+      mm match {
+        case 1 => mon = JANUARY
+        case 2 => mon = FEBRUARY
+        case 3 => mon = MARCH
+        case 4 => mon = APRIL
+        case 5 => mon = MAY
+        case 6 => mon = JUNE
+        case 7 => mon = JULY
+        case 8 => mon = AUGUST
+        case 9 => mon = SEPTEMBER
+        case 10 => mon = OCTOBER
+        case 11 => mon = NOVEMBER
+        case 12 => mon = DECEMBER
+      }
+
+      val res = new SingleLongValue(Dt(dd, mon, yyyy).serialNumber)
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
     }
 
-    val res = new SingleLongValue(Dt(dd, mon, yyyy).serialNumber)
-    JsonResponse(res)
+
   }
 
 
@@ -121,8 +149,25 @@ class DateController extends BaseApiController {
   ))
   def todaySimpleFmt = Action {
 
-    val res = new SingleStringValue(String.valueOf(Dt.todaysDate))
-    JsonResponse(res)
+    DateController.invocationTodaySimpleFmt.mark
+
+    val context : Timer.Context = DateController.invocationTodaySimpleFmtTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt.todaysDate))
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
 
   }
 
@@ -145,8 +190,25 @@ class DateController extends BaseApiController {
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
   ))
   def weekday = Action {
-    val res = new SingleStringValue(String.valueOf(Dt.todaysDate.weekday))
-    JsonResponse(res)
+
+    DateController.invocationWeekday.mark
+
+    val context : Timer.Context = DateController.invocationWeekdayTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt.todaysDate.weekday))
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
   }
 
 
@@ -160,8 +222,27 @@ class DateController extends BaseApiController {
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
   ))
   def year = Action {
-    val res = new SingleStringValue(String.valueOf(Dt.todaysDate.year))
-    JsonResponse(res)
+
+    DateController.invocationYear.mark
+
+    val context : Timer.Context = DateController.invocationYearTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt.todaysDate.year))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
   @ApiOperation(
@@ -174,8 +255,27 @@ class DateController extends BaseApiController {
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
   ))
   def month = Action {
-    val res = new SingleStringValue(String.valueOf(Dt.todaysDate.month))
-    JsonResponse(res)
+
+    DateController.invocationMonth.mark
+
+    val context : Timer.Context = DateController.invocationMonthTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt.todaysDate.month))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
   @ApiOperation(
@@ -188,8 +288,27 @@ class DateController extends BaseApiController {
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
   ))
   def dayOfMonth = Action {
-    val res = new SingleStringValue(String.valueOf(Dt.todaysDate.dayOfMonth))
-    JsonResponse(res)
+
+    DateController.invocationDayOfMonth.mark
+
+    val context : Timer.Context = DateController.invocationDayOfMonthTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt.todaysDate.dayOfMonth))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
 
@@ -203,8 +322,27 @@ class DateController extends BaseApiController {
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
   ))
   def dayOfYear = Action {
-    val res = new SingleStringValue(String.valueOf(Dt.todaysDate.dayOfYear))
-    JsonResponse(res)
+
+    DateController.invocationDayOfYear.mark
+
+    val context : Timer.Context = DateController.invocationDayOfYearTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt.todaysDate.dayOfYear))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
 
@@ -218,8 +356,27 @@ class DateController extends BaseApiController {
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
   ))
   def isLeapYear = Action {
-    val res = new SingleStringValue(String.valueOf(Dt.todaysDate.isLeapYear))
-    JsonResponse(res)
+
+    DateController.invocationisLeapYear.mark
+
+    val context : Timer.Context = DateController.invocationisLeapYearTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt.todaysDate.isLeapYear))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
   // end of parameterless functions.
@@ -247,8 +404,26 @@ class DateController extends BaseApiController {
                  @Path("/date/{serialNumber}/mmddyyyy")
                  num: Long) = Action {
 
-    val res = new SingleStringValue(String.valueOf(Dt(num)))
-    JsonResponse(res)
+    DateController.invocationSimpleFmt.mark
+
+    val context : Timer.Context = DateController.invocationSimpleFmtTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(num)))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
 
   }
 
@@ -273,8 +448,29 @@ class DateController extends BaseApiController {
                  @PathParam("serialNumber")
                  @Path("/date/{serialNumber}/weekday")
                  num: Long) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).weekday))
-    JsonResponse(res)
+
+
+    DateController.invocationDtWeekday.mark
+
+    val context : Timer.Context = DateController.invocationDtWeekdayTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(num).weekday))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
+
   }
 
   @ApiOperation(
@@ -291,8 +487,28 @@ class DateController extends BaseApiController {
                @PathParam("serialNumber")
                @Path("/date/{serialNumber}/year")
                num: Long) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).year))
-    JsonResponse(res)
+
+
+    DateController.invocationDtYear.mark
+
+    val context : Timer.Context = DateController.invocationDtYearTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(num).year))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
   @ApiOperation(
@@ -309,8 +525,26 @@ class DateController extends BaseApiController {
                 @PathParam("serialNumber")
                 @Path("/date/{serialNumber}/month")
                 num: Long) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).month))
-    JsonResponse(res)
+
+    DateController.invocationDtMonth.mark
+
+    val context : Timer.Context = DateController.invocationDtMonthTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(num).month))
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
   @ApiOperation(
@@ -327,8 +561,28 @@ class DateController extends BaseApiController {
                      @PathParam("serialNumber")
                      @Path("/date/{serialNumber}/dayOfMonth")
                      num: Long) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).dayOfMonth))
-    JsonResponse(res)
+
+
+    DateController.invocationDtDayOfMonth.mark
+
+    val context : Timer.Context = DateController.invocationDtDayOfMonthTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(num).dayOfMonth))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
   @ApiOperation(
@@ -345,8 +599,28 @@ class DateController extends BaseApiController {
                     @PathParam("serialNumber")
                     @Path("/date/{serialNumber}/dayOfYear")
                     num: Long)  = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).dayOfYear))
-    JsonResponse(res)
+
+
+    DateController.invocationDtDayOfYear.mark
+
+    val context : Timer.Context = DateController.invocationDtDayOfYearTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(num).dayOfYear))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
 
@@ -364,8 +638,28 @@ class DateController extends BaseApiController {
                      @PathParam("serialNumber")
                      @Path("/date/{serialNumber}/isLeapYear")
                      num: Long)  = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(num).isLeapYear))
-    JsonResponse(res)
+
+
+    DateController.invocationDtIsLeapYear.mark
+
+    val context : Timer.Context = DateController.invocationDtIsLeapYearTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(num).isLeapYear))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
 
@@ -402,8 +696,27 @@ class DateController extends BaseApiController {
                     @PathParam("yyyy")
                     @Path("/date/{mm}/{dd}/{yyyy}/weekday")
                     yyyy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).weekday))
-    JsonResponse(res)
+
+
+    DateController.invocationDtstrWeekday.mark
+
+    val context : Timer.Context = DateController.invocationDtstrWeekdayTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).weekday))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
   }
 
 
@@ -429,8 +742,28 @@ class DateController extends BaseApiController {
                   @PathParam("yyyy")
                   @Path("/date/{mm}/{dd}/{yyyy}/year")
                   yyyy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).year))
-    JsonResponse(res)
+
+
+    DateController.invocationDtstrYear.mark
+
+    val context : Timer.Context = DateController.invocationDtstrYearTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).year))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
 
@@ -457,8 +790,28 @@ class DateController extends BaseApiController {
                    @PathParam("yyyy")
                    @Path("/date/{mm}/{dd}/{yyyy}/month")
                    yyyy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).month))
-    JsonResponse(res)
+
+
+    DateController.invocationDtstrMonth.mark
+
+    val context : Timer.Context = DateController.invocationDtstrMonthTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).month))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
 
@@ -484,8 +837,27 @@ class DateController extends BaseApiController {
                         @PathParam("yyyy")
                         @Path("/date/{mm}/{dd}/{yyyy}/dayOfMonth")
                         yyyy: Int) = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).dayOfMonth))
-    JsonResponse(res)
+
+    DateController.invocationDtstrDayOfMonth.mark
+
+    val context : Timer.Context = DateController.invocationDtstrDayOfMonthTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).dayOfMonth))
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
 
@@ -510,8 +882,25 @@ class DateController extends BaseApiController {
                       @PathParam("yyyy")
                       @Path("/date/{mm}/{dd}/{yyyy}/dayOfYear")
                       yyyy: Int)  = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).dayOfYear))
-    JsonResponse(res)
+
+    DateController.invocationDtstrDayOfYear.mark
+
+    val context : Timer.Context = DateController.invocationDtstrDayOfYearTimer.time
+
+    try {
+      val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).dayOfYear))
+
+      JsonResponse(res)
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
 
@@ -537,8 +926,27 @@ class DateController extends BaseApiController {
                        @PathParam("yyyy")
                        @Path("/date/{mm}/{dd}/{yyyy}/isLeapYear")
                        yyyy: Int)  = Action {
-    val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).isLeapYear))
-    JsonResponse(res)
+
+
+    DateController.invocationDtstrIsLeapYear.mark
+
+    val context : Timer.Context = DateController.invocationDtstrIsLeapYearTimer.time
+
+    try {
+
+      val res = new SingleStringValue(String.valueOf(Dt(dd, mm, yyyy).isLeapYear))
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
 
@@ -555,8 +963,23 @@ class DateController extends BaseApiController {
   ))
   def incr() = Action {
 
-    val res = new SingleLongValue(Dt.todaysDate.serialNumber + 1)
-    JsonResponse(res)
+    DateController.invocationIncr.mark
+
+    val context : Timer.Context = DateController.invocationIncrTimer.time
+
+    try {
+      val res = new SingleLongValue(Dt.todaysDate.serialNumber + 1)
+      JsonResponse(res)
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
   }
 
   @ApiOperation(
@@ -573,8 +996,26 @@ class DateController extends BaseApiController {
               @PathParam("n")
               @Path("/date/today/{n}/incr") n: Int) = Action {
 
-    val res = new SingleLongValue(Dt.todaysDate.serialNumber + n)
-    JsonResponse(res)
+    DateController.invocationIncrBy.mark
+
+    val context : Timer.Context = DateController.invocationIncrByTimer.time
+
+    try {
+
+      val res = new SingleLongValue(Dt.todaysDate.serialNumber + n)
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
 
   }
 
@@ -590,8 +1031,26 @@ class DateController extends BaseApiController {
   ))
   def decr() = Action {
 
-    val res = new SingleLongValue(Dt.todaysDate.serialNumber - 1)
-    JsonResponse(res)
+    DateController.invocationDecr.mark
+
+    val context : Timer.Context = DateController.invocationDecrTimer.time
+
+    try {
+
+      val res = new SingleLongValue(Dt.todaysDate.serialNumber - 1)
+
+      JsonResponse(res)
+
+    } catch {
+      case e : Exception => {
+        error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
 
   }
 
@@ -609,8 +1068,25 @@ class DateController extends BaseApiController {
               @PathParam("n")
               @Path("/date/today/{n}/decr") n: Int) = Action {
 
-    val res = new SingleLongValue(Dt.todaysDate.serialNumber - n)
-    JsonResponse(res)
+    DateController.invocationDecrBy.mark
+
+    val context : Timer.Context = DateController.invocationDecrByTimer.time
+
+    try {
+
+      val res = new SingleLongValue(Dt.todaysDate.serialNumber - n)
+
+      JsonResponse(res)
+    } catch {
+      case e : Exception => {
+       error(e.getMessage)
+        throw e
+      }
+    } finally {
+      context.stop()
+    }
+
+
 
   }
 
@@ -618,4 +1094,85 @@ class DateController extends BaseApiController {
 
 }
 
-object DateController {}
+object DateController {
+
+  val invocationToday : Meter = Instrumentation.metrics.meter("invocation-today")
+  var invocationTodayTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." + "invocation-todayTimer")
+
+  val invocationSerialNumber : Meter  = Instrumentation.metrics.meter("invocation-serialNumber")
+  var invocationSerialNumberTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." + "invocation-serialNumberTimer")
+
+  val invocationTodaySimpleFmt : Meter  = Instrumentation.metrics.meter("invocation-todaySimpleFmt")
+  var invocationTodaySimpleFmtTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." + "invocation-todaySimpleFmtTimer")
+
+  val invocationWeekday : Meter  = Instrumentation.metrics.meter("invocation-weekday")
+  var invocationWeekdayTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." + "invocation-weekdayTimer")
+
+  val invocationYear : Meter  = Instrumentation.metrics.meter("invocation-year")
+  var invocationYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-yearTimer")
+
+  val invocationMonth : Meter  = Instrumentation.metrics.meter("invocation-month")
+  var invocationMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-monthTimer")
+
+  val invocationDayOfMonth : Meter  = Instrumentation.metrics.meter("invocation-dayOfMonth")
+  var invocationDayOfMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dayOfMonthTimer")
+
+  val invocationDayOfYear : Meter  = Instrumentation.metrics.meter("invocation-dayOfYear")
+  var invocationDayOfYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dayOfYearTimer")
+
+  val invocationisLeapYear : Meter  = Instrumentation.metrics.meter("invocation-isLeapYear")
+  var invocationisLeapYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-isLeapYearTimer")
+
+  val invocationSimpleFmt : Meter  = Instrumentation.metrics.meter("invocation-simpleFmt")
+  var invocationSimpleFmtTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-simpleFmtTimer")
+
+  val invocationDtWeekday : Meter  = Instrumentation.metrics.meter("invocation-dtWeekday")
+  var invocationDtWeekdayTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtWeekdayTimer")
+
+  val invocationDtYear : Meter  = Instrumentation.metrics.meter("invocation-dtYear")
+  var invocationDtYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtYearTimer")
+
+  val invocationDtMonth  : Meter  = Instrumentation.metrics.meter("invocation-dtMonth")
+  var invocationDtMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtMonthTimer")
+
+  val invocationDtDayOfMonth  : Meter  = Instrumentation.metrics.meter("invocation-dtDayOfMonth")
+  var invocationDtDayOfMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtDayOfMonthTimer")
+
+  val invocationDtDayOfYear  : Meter  = Instrumentation.metrics.meter("invocation-dtDayOfYear")
+  var invocationDtDayOfYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtDayOfYearTimer")
+
+  val invocationDtIsLeapYear  : Meter  = Instrumentation.metrics.meter("invocation-dtIsLeapYear")
+  var invocationDtIsLeapYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtIsLeapYearTimer")
+
+  val invocationDtstrWeekday : Meter  = Instrumentation.metrics.meter("invocation-dtstrWeekday")
+  var invocationDtstrWeekdayTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrWeekdayTimer")
+
+  val invocationDtstrYear : Meter  = Instrumentation.metrics.meter("invocation-dtstrYear")
+  var invocationDtstrYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrYearTimer")
+
+  val invocationDtstrMonth : Meter  = Instrumentation.metrics.meter("invocation-dtstrMonth")
+  var invocationDtstrMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrMonthTimer")
+
+  val invocationDtstrDayOfMonth : Meter  = Instrumentation.metrics.meter("invocation-dtstrDayOfMonth")
+  var invocationDtstrDayOfMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrDayOfMonthTimer")
+
+  val invocationDtstrDayOfYear : Meter  = Instrumentation.metrics.meter("invocation-dtstrDayOfYear")
+  var invocationDtstrDayOfYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrDayOfYearTimer")
+
+  val invocationDtstrIsLeapYear : Meter  = Instrumentation.metrics.meter("invocation-dtstrIsLeapYear")
+  var invocationDtstrIsLeapYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrIsLeapYearTimer")
+
+  val invocationIncr: Meter  = Instrumentation.metrics.meter("invocation-incr")
+  var invocationIncrTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-incrTimer")
+
+  val invocationIncrBy: Meter  = Instrumentation.metrics.meter("invocation-incrBy")
+  var invocationIncrByTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-incrByTimer")
+
+  val invocationDecr: Meter  = Instrumentation.metrics.meter("invocation-decr")
+  var invocationDecrTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-decrTimer")
+
+  val invocationDecrBy: Meter  = Instrumentation.metrics.meter("invocation-decrBy")
+  var invocationDecrByTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-decrByTimer")
+
+
+}
