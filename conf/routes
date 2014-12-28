@@ -19,7 +19,7 @@ GET            /admin/ping                             controllers.HealthControl
 GET            /api-docs/date                          controllers.ApiHelpController.getResource(path = "/date")
 
 GET            /date/today/serialNumber                @controllers.DateController.today
-GET            /date/serialNumber/:mm/:dd/:yyyy        @controllers.DateController.serialNumber(mm: Int, dd: Int, yyyy: Int)
+GET            /date/:mm/:dd/:yyyy/serialNumber        @controllers.DateController.serialNumber(mm: Int, dd: Int, yyyy: Int)
 GET            /date/today/mmddyyyy                    @controllers.DateController.todaySimpleFmt
 GET            /date/today/weekday                     @controllers.DateController.weekday
 GET            /date/today/year                        @controllers.DateController.year
@@ -53,9 +53,9 @@ GET            /date/:mm/:dd/:yyyy/isLeapYear          @controllers.DateControll
 # functions for date math
 
 GET            /date/today/incr                        @controllers.DateController.incr
-GET            /date/today/incr/:n                     @controllers.DateController.incrBy(n: Int)
+GET            /date/today/:n/incr                     @controllers.DateController.incrBy(n: Int)
 GET            /date/today/decr                        @controllers.DateController.decr
-GET            /date/today/decr/:n                     @controllers.DateController.decrBy(n: Int)
+GET            /date/today/:n/decr                     @controllers.DateController.decrBy(n: Int)
 
 # functions available which implement day count and year fraction calculations
 
