@@ -569,8 +569,8 @@ class DateController extends BaseApiController {
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
   ))
   def incrBy(
-              @ApiParam(value = "n", required = true)
-              @PathParam("d")
+              @ApiParam(value = "Number of days to increment.", required = true)
+              @PathParam("n")
               @Path("/date/today/{n}/incr") n: Int) = Action {
 
     val res = new SingleLongValue(Dt.todaysDate.serialNumber + n)
@@ -605,8 +605,8 @@ class DateController extends BaseApiController {
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
   ))
   def decrBy(
-              @ApiParam(value = "n", required = true)
-              @PathParam("d")
+              @ApiParam(value = "Number of days to decrement", required = true)
+              @PathParam("n")
               @Path("/date/today/{n}/decr") n: Int) = Action {
 
     val res = new SingleLongValue(Dt.todaysDate.serialNumber - n)
