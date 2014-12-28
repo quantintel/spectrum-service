@@ -65,7 +65,7 @@ class DayCountController extends BaseApiController with Logging {
                  @PathParam("todate")
                  @Path("/daycount/{fromdate}/{todate}/actual360") todate: Long) = Action {
 
-    DayCountController.invocationActual360 .mark
+    DayCountController.invocationActual360.mark
 
     val context : Timer.Context = DayCountController.invocationActual360Timer.time
 
