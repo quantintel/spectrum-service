@@ -548,7 +548,7 @@ class DateController extends BaseApiController {
     nickname = "incr",
     value = "increments the current days serial number by one.",
     notes = "",
-    response = classOf[model.SingleStringValue],
+    response = classOf[model.SingleLongValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -563,7 +563,7 @@ class DateController extends BaseApiController {
     nickname = "incrBy",
     value = "increments the current days serial number by the number of units indicated.",
     notes = "",
-    response = classOf[model.SingleStringValue],
+    response = classOf[model.SingleLongValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -583,7 +583,7 @@ class DateController extends BaseApiController {
     nickname = "decr",
     value = "decrements the current days serial number by one.",
     notes = "",
-    response = classOf[model.SingleStringValue],
+    response = classOf[model.SingleLongValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
@@ -599,7 +599,7 @@ class DateController extends BaseApiController {
     nickname = "decrBy",
     value = "decrements the current days serial number by the number of units indicated.",
     notes = "",
-    response = classOf[model.SingleStringValue],
+    response = classOf[model.SingleLongValue],
     httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = 404, message="Request cannot be satisfied with parameters provided.")
