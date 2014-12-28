@@ -12,7 +12,5 @@ The service utilizes:
 ** http://dropwizard.io
 - Grizzled SLF4J
 ** http://software.clapper.org/grizzled-slf4j/
-- Metrics / Codahale / dropwizard
-** https://dropwizard.github.io/metrics
 
 
