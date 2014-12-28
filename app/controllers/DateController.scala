@@ -78,7 +78,7 @@ class DateController extends BaseApiController {
                     @PathParam("dd")
                     @Path("/date/serialnumber/{mm}/{dd}/{yyyy}") dd: Int,
                     @ApiParam(value = "yyyy", required = true)
-                    @PathParam("serialNumber")
+                    @PathParam("year")
                     @Path("/date/serialnumber/{mm}/{dd}/{yyyy}") yyyy: Int) = Action {
 
     import org.quantintel.ql.time.Month._
