@@ -44,13 +44,13 @@ class DayCountController extends BaseApiController with Logging {
   }
 
   /**
-   * This method returns todays date as a serial number.
+   * This method calculates the day count between two dates using the Actual/360 method..
    *
-   * @return serial number representing today's date.
+   * @return day count.
    */
   @ApiOperation(
     nickname = "actual360",
-    value = "day count using actual/360",
+    value = "day count using the Actual/360 method",
     notes = "returns the day count given a start and end date as serial numbers",
     response = classOf[model.SingleLongValue],
     httpMethod = "GET")
