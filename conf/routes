@@ -64,8 +64,8 @@ GET            /api-docs/daycount                               controllers.ApiH
 GET            /daycount/:fromdate/:todate/actual360            @controllers.DayCountController.actual360(fromdate: Long, todate: Long)
 GET            /daycount/:fromdate/:todate/actual360yf          @controllers.DayCountController.actual360YF(fromdate: Long, todate: Long)
 
-GET            /daycount/:fromdate/:todate}/actual365f          @controllers.DayCountController.actual365F(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate}/actual365fyf        @controllers.DayCountController.actual365FYF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/actual365f          @controllers.DayCountController.actual365F(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/actual365fyf        @controllers.DayCountController.actual365FYF(fromdate: Long, todate: Long)
 
 GET            /daycount/:fromdate/:todate/actual365l           @controllers.DayCountController.actual365L(fromdate: Long, todate: Long)
 GET            /daycount/:fromdate/:todate/actual365lyf         @controllers.DayCountController.actual365LYF(fromdate: Long, todate: Long)
