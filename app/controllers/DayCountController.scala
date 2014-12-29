@@ -139,7 +139,7 @@ class DayCountController extends BaseApiController with Logging {
   // end actual360
 
   @ApiOperation(
-    nickname = "actual360F",
+    nickname = "actual365f",
     value = "day count using the Actual/360F method",
     notes = "returns the day count given a start and end date as serial numbers",
     response = classOf[model.SingleLongValue],
@@ -183,7 +183,7 @@ class DayCountController extends BaseApiController with Logging {
   }
 
   @ApiOperation(
-    nickname = "actual360fyf",
+    nickname = "actual365fyf",
     value = "day count fraction using the Actual/360F method",
     notes = "returns the day count fraction given a start and end date as serial numbers",
     response = classOf[model.SingleDoubleValue],
@@ -231,7 +231,7 @@ class DayCountController extends BaseApiController with Logging {
   // end 365F
 
   @ApiOperation(
-    nickname = "actual360L",
+    nickname = "actual365l",
     value = "day count using the Actual/360L method",
     notes = "returns the day count given a start and end date as serial numbers",
     response = classOf[model.SingleLongValue],
@@ -276,7 +276,7 @@ class DayCountController extends BaseApiController with Logging {
 
 
   @ApiOperation(
-    nickname = "actual360lyf",
+    nickname = "actual365lyf",
     value = "day count fraction using the Actual/360l method",
     notes = "returns the day count fraction given a start and end date as serial numbers",
     response = classOf[model.SingleDoubleValue],
@@ -323,7 +323,7 @@ class DayCountController extends BaseApiController with Logging {
   // end 365L
 
   @ApiOperation(
-    nickname = "actual360NL",
+    nickname = "actual365nl",
     value = "day count using the Actual/360NL method",
     notes = "returns the day count given a start and end date as serial numbers",
     response = classOf[model.SingleLongValue],
@@ -367,7 +367,7 @@ class DayCountController extends BaseApiController with Logging {
   }
 
   @ApiOperation(
-    nickname = "actual360nlyf",
+    nickname = "actual365nlyf",
     value = "day count fraction using the Actual/360NL method",
     notes = "returns the day count fraction given a start and end date as serial numbers",
     response = classOf[model.SingleDoubleValue],
