@@ -419,36 +419,36 @@ class DayCountController extends BaseApiController with Logging {
 
 object DayCountController {
 
-  val invocationActual360 : Meter = Instrumentation.metrics.meter("invocation-actual360")
+  val invocationActual360 : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual360")
   var invocationActual360Timer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual360Timer")
 
-  val invocationActual360YF : Meter = Instrumentation.metrics.meter("invocation-actual360YF")
+  val invocationActual360YF : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual360YF")
   var invocationActual360YFTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual360YFTimer")
 
 
 
-  val invocationActual365F : Meter = Instrumentation.metrics.meter("invocation-actual365F")
+  val invocationActual365F : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365F")
   var invocationActual365FTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365YFFTimer")
 
-  val invocationActual365FYF : Meter = Instrumentation.metrics.meter("invocation-actual365FYF")
+  val invocationActual365FYF : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365FYF")
   var invocationActual365FYFTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365FYFTimer")
 
 
 
 
-  val invocationActual365NL : Meter = Instrumentation.metrics.meter("invocation-actual365NL")
+  val invocationActual365NL : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365NL")
   var invocationActual365NLTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365NLTimer")
 
-  val invocationActual365NLYF : Meter = Instrumentation.metrics.meter("invocation-actual365NLYF")
+  val invocationActual365NLYF : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365NLYF")
   var invocationActual365NLYFTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365NLYFTimer")
 
 
 
 
-  val invocationActual365L : Meter = Instrumentation.metrics.meter("invocation-actual365L")
+  val invocationActual365L : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365L")
   var invocationActual365LTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365LTimer")
 
-  val invocationActual365LYF : Meter = Instrumentation.metrics.meter("invocation-actual365LYF")
+  val invocationActual365LYF : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365LYF")
   var invocationActual365LYFTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365LYFTimer")
 
 }

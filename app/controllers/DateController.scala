@@ -1096,82 +1096,82 @@ class DateController extends BaseApiController with Logging {
 
 object DateController {
 
-  val invocationToday : Meter = Instrumentation.metrics.meter("invocation-today")
+  val invocationToday : Meter = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-today")
   var invocationTodayTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." + "invocation-todayTimer")
 
-  val invocationSerialNumber : Meter  = Instrumentation.metrics.meter("invocation-serialNumber")
+  val invocationSerialNumber : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-serialNumber")
   var invocationSerialNumberTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." + "invocation-serialNumberTimer")
 
-  val invocationTodaySimpleFmt : Meter  = Instrumentation.metrics.meter("invocation-todaySimpleFmt")
+  val invocationTodaySimpleFmt : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-todaySimpleFmt")
   var invocationTodaySimpleFmtTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." + "invocation-todaySimpleFmtTimer")
 
-  val invocationWeekday : Meter  = Instrumentation.metrics.meter("invocation-weekday")
+  val invocationWeekday : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-weekday")
   var invocationWeekdayTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." + "invocation-weekdayTimer")
 
-  val invocationYear : Meter  = Instrumentation.metrics.meter("invocation-year")
+  val invocationYear : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-year")
   var invocationYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-yearTimer")
 
-  val invocationMonth : Meter  = Instrumentation.metrics.meter("invocation-month")
+  val invocationMonth : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-month")
   var invocationMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-monthTimer")
 
-  val invocationDayOfMonth : Meter  = Instrumentation.metrics.meter("invocation-dayOfMonth")
+  val invocationDayOfMonth : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dayOfMonth")
   var invocationDayOfMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dayOfMonthTimer")
 
-  val invocationDayOfYear : Meter  = Instrumentation.metrics.meter("invocation-dayOfYear")
+  val invocationDayOfYear : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dayOfYear")
   var invocationDayOfYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dayOfYearTimer")
 
-  val invocationisLeapYear : Meter  = Instrumentation.metrics.meter("invocation-isLeapYear")
+  val invocationisLeapYear : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-isLeapYear")
   var invocationisLeapYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-isLeapYearTimer")
 
-  val invocationSimpleFmt : Meter  = Instrumentation.metrics.meter("invocation-simpleFmt")
+  val invocationSimpleFmt : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-simpleFmt")
   var invocationSimpleFmtTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-simpleFmtTimer")
 
-  val invocationDtWeekday : Meter  = Instrumentation.metrics.meter("invocation-dtWeekday")
+  val invocationDtWeekday : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtWeekday")
   var invocationDtWeekdayTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtWeekdayTimer")
 
-  val invocationDtYear : Meter  = Instrumentation.metrics.meter("invocation-dtYear")
+  val invocationDtYear : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtYear")
   var invocationDtYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtYearTimer")
 
-  val invocationDtMonth  : Meter  = Instrumentation.metrics.meter("invocation-dtMonth")
+  val invocationDtMonth  : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtMonth")
   var invocationDtMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtMonthTimer")
 
-  val invocationDtDayOfMonth  : Meter  = Instrumentation.metrics.meter("invocation-dtDayOfMonth")
+  val invocationDtDayOfMonth  : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtDayOfMonth")
   var invocationDtDayOfMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtDayOfMonthTimer")
 
-  val invocationDtDayOfYear  : Meter  = Instrumentation.metrics.meter("invocation-dtDayOfYear")
+  val invocationDtDayOfYear  : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtDayOfYear")
   var invocationDtDayOfYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtDayOfYearTimer")
 
-  val invocationDtIsLeapYear  : Meter  = Instrumentation.metrics.meter("invocation-dtIsLeapYear")
+  val invocationDtIsLeapYear  : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtIsLeapYear")
   var invocationDtIsLeapYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtIsLeapYearTimer")
 
-  val invocationDtstrWeekday : Meter  = Instrumentation.metrics.meter("invocation-dtstrWeekday")
+  val invocationDtstrWeekday : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtstrWeekday")
   var invocationDtstrWeekdayTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrWeekdayTimer")
 
-  val invocationDtstrYear : Meter  = Instrumentation.metrics.meter("invocation-dtstrYear")
+  val invocationDtstrYear : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtstrYear")
   var invocationDtstrYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrYearTimer")
 
-  val invocationDtstrMonth : Meter  = Instrumentation.metrics.meter("invocation-dtstrMonth")
+  val invocationDtstrMonth : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtstrMonth")
   var invocationDtstrMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrMonthTimer")
 
-  val invocationDtstrDayOfMonth : Meter  = Instrumentation.metrics.meter("invocation-dtstrDayOfMonth")
+  val invocationDtstrDayOfMonth : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtstrDayOfMonth")
   var invocationDtstrDayOfMonthTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrDayOfMonthTimer")
 
-  val invocationDtstrDayOfYear : Meter  = Instrumentation.metrics.meter("invocation-dtstrDayOfYear")
+  val invocationDtstrDayOfYear : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtstrDayOfYear")
   var invocationDtstrDayOfYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrDayOfYearTimer")
 
-  val invocationDtstrIsLeapYear : Meter  = Instrumentation.metrics.meter("invocation-dtstrIsLeapYear")
+  val invocationDtstrIsLeapYear : Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-dtstrIsLeapYear")
   var invocationDtstrIsLeapYearTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-dtstrIsLeapYearTimer")
 
-  val invocationIncr: Meter  = Instrumentation.metrics.meter("invocation-incr")
+  val invocationIncr: Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-incr")
   var invocationIncrTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-incrTimer")
 
-  val invocationIncrBy: Meter  = Instrumentation.metrics.meter("invocation-incrBy")
+  val invocationIncrBy: Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-incrBy")
   var invocationIncrByTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-incrByTimer")
 
-  val invocationDecr: Meter  = Instrumentation.metrics.meter("invocation-decr")
+  val invocationDecr: Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-decr")
   var invocationDecrTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-decrTimer")
 
-  val invocationDecrBy: Meter  = Instrumentation.metrics.meter("invocation-decrBy")
+  val invocationDecrBy: Meter  = Instrumentation.metrics.meter(DateController.getClass.getCanonicalName + "." + "invocation-decrBy")
   var invocationDecrByTimer : Timer  = Instrumentation.metrics.timer(DateController.getClass.getCanonicalName + "." +  "invocation-decrByTimer")
 
 
