@@ -146,13 +146,13 @@ class DayCountActActController extends BaseApiController with Logging  {
   @ApiResponses(Array(
     new ApiResponse(code = 400, message = "Required parameter missing"),
     new ApiResponse(code = 404, message = "function error")))
-  def actActBond (
+  def actActBOND (
                    @ApiParam(value = "from date", required = true)
                    @PathParam("fromdate")
-                   @Path("/daycount/{fromdate}/{todate}/actActBond") fromdate: Long,
+                   @Path("/daycount/{fromdate}/{todate}/actActBOND") fromdate: Long,
                    @ApiParam(value = "to date", required = true)
                    @PathParam("todate")
-                   @Path("/daycount/{fromdate}/{todate}/actActBond") todate: Long) = Action {
+                   @Path("/daycount/{fromdate}/{todate}/actActBOND") todate: Long) = Action {
 
     DayCountActActController.invocationActActBond.mark
 
@@ -186,13 +186,13 @@ class DayCountActActController extends BaseApiController with Logging  {
   @ApiResponses(Array(
     new ApiResponse(code = 400, message = "Required parameter missing"),
     new ApiResponse(code = 404, message = "function error")))
-  def actActBondYF (
+  def actActBONDYF (
                      @ApiParam(value = "from date", required = true)
                      @PathParam("fromdate")
-                     @Path("/daycount/{fromdate}/{todate}/actActBondYF") fromdate: Long,
+                     @Path("/daycount/{fromdate}/{todate}/actActBONDYF") fromdate: Long,
                      @ApiParam(value = "to date", required = true)
                      @PathParam("todate")
-                     @Path("/daycount/{fromdate}/{todate}/actActBondYF") todate: Long) = Action {
+                     @Path("/daycount/{fromdate}/{todate}/actActBONDYF") todate: Long) = Action {
 
     DayCountActActController.invocationActActBondYF.mark
 
