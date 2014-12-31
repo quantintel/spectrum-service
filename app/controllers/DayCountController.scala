@@ -60,10 +60,10 @@ class DayCountController extends BaseApiController with Logging {
   def actual360(
                  @ApiParam(value = "from date", required = true)
                  @PathParam("fromdate")
-                 @Path("/daycount/{fromdate}/{todate}/actual360") fromdate: Long,
+                 @Path("/daycount/{fromdate}/{todate}/Act360/DC") fromdate: Long,
                  @ApiParam(value = "to date", required = true)
                  @PathParam("todate")
-                 @Path("/daycount/{fromdate}/{todate}/actual360") todate: Long) = Action {
+                 @Path("/daycount/{fromdate}/{todate}/Act360/DC") todate: Long) = Action {
 
     DayCountController.invocationActual360.mark
 
@@ -104,10 +104,10 @@ class DayCountController extends BaseApiController with Logging {
   def actual360YF (
                     @ApiParam(value = "from date", required = true)
                     @PathParam("fromdate")
-                    @Path("/daycount/{fromdate}/{todate}/actual360yf") fromdate: Long,
+                    @Path("/daycount/{fromdate}/{todate}/Act360/YF") fromdate: Long,
                     @ApiParam(value = "to date", required = true)
                     @PathParam("todate")
-                    @Path("/daycount/{fromdate}/{todate}/actual360yf") todate: Long) = Action {
+                    @Path("/daycount/{fromdate}/{todate}/Act360/YF") todate: Long) = Action {
 
     DayCountController.invocationActual360YF.mark
 
@@ -139,7 +139,7 @@ class DayCountController extends BaseApiController with Logging {
   // end actual360
 
   @ApiOperation(
-    nickname = "actual365f",
+    nickname = "actual365F",
     value = "day count using the Actual/360F method",
     notes = "returns the day count given a start and end date as serial numbers",
     response = classOf[model.SingleLongValue],
@@ -150,10 +150,10 @@ class DayCountController extends BaseApiController with Logging {
   def actual365F(
                   @ApiParam(value = "from date", required = true)
                   @PathParam("fromdate")
-                  @Path("/daycount/{fromdate}/{todate}/actual365f")fromdate: Long,
+                  @Path("/daycount/{fromdate}/{todate}/Act365F/DC")fromdate: Long,
                   @ApiParam(value = "to date", required = true)
                   @PathParam("todate")
-                  @Path("/daycount/{fromdate}/{todate}/actual365f")todate: Long) = Action {
+                  @Path("/daycount/{fromdate}/{todate}/Act365F/DC")todate: Long) = Action {
 
     DayCountController.invocationActual365F.mark
 
@@ -183,7 +183,7 @@ class DayCountController extends BaseApiController with Logging {
   }
 
   @ApiOperation(
-    nickname = "actual365fyf",
+    nickname = "actual365Fyf",
     value = "day count fraction using the Actual/360F method",
     notes = "returns the day count fraction given a start and end date as serial numbers",
     response = classOf[model.SingleDoubleValue],
@@ -194,10 +194,10 @@ class DayCountController extends BaseApiController with Logging {
   def actual365FYF(
                     @ApiParam(value = "from date", required = true)
                     @PathParam("fromdate")
-                    @Path("/daycount/{fromdate}/{todate}/actual365fyf")fromdate: Long,
+                    @Path("/daycount/{fromdate}/{todate}/Act365F/YF")fromdate: Long,
                     @ApiParam(value = "to date", required = true)
                     @PathParam("todate")
-                    @Path("/daycount/{fromdate}/{todate}/actual365fyf")todate: Long) = Action {
+                    @Path("/daycount/{fromdate}/{todate}/Act365F/YF")todate: Long) = Action {
 
     DayCountController.invocationActual365FYF.mark
 
@@ -231,7 +231,7 @@ class DayCountController extends BaseApiController with Logging {
   // end 365F
 
   @ApiOperation(
-    nickname = "actual365l",
+    nickname = "actual365L",
     value = "day count using the Actual/360L method",
     notes = "returns the day count given a start and end date as serial numbers",
     response = classOf[model.SingleLongValue],
@@ -242,10 +242,10 @@ class DayCountController extends BaseApiController with Logging {
   def actual365L(
                   @ApiParam(value = "from date", required = true)
                   @PathParam("fromdate")
-                  @Path("/daycount/{fromdate}/{todate}/actual365l") fromdate: Long,
+                  @Path("/daycount/{fromdate}/{todate}/Act365L/DC") fromdate: Long,
                   @ApiParam(value = "to date", required = true)
                   @PathParam("todate")
-                  @Path("/daycount/{fromDate}/{toDate}/actual360l")todate: Long) = Action {
+                  @Path("/daycount/{fromDate}/{toDate}/Act360L/DC")todate: Long) = Action {
 
     DayCountController.invocationActual365L.mark
 
@@ -276,7 +276,7 @@ class DayCountController extends BaseApiController with Logging {
 
 
   @ApiOperation(
-    nickname = "actual365lyf",
+    nickname = "actual365Lyf",
     value = "day count fraction using the Actual/360l method",
     notes = "returns the day count fraction given a start and end date as serial numbers",
     response = classOf[model.SingleDoubleValue],
@@ -287,10 +287,10 @@ class DayCountController extends BaseApiController with Logging {
   def actual365LYF(
                     @ApiParam(value = "from date", required = true)
                     @PathParam("fromdate")
-                    @Path("/daycount/{fromdate}/{todate}/actual365lyf") fromdate: Long,
+                    @Path("/daycount/{fromdate}/{todate}/Act365L/YF") fromdate: Long,
                     @ApiParam(value = "to date", required = true)
                     @PathParam("todate")
-                    @Path("/daycount/{fromdate}/{todate}/actual365lyf") todate: Long) = Action {
+                    @Path("/daycount/{fromdate}/{todate}/Act365L/YF") todate: Long) = Action {
 
     DayCountController.invocationActual365LYF.mark
 
@@ -334,10 +334,10 @@ class DayCountController extends BaseApiController with Logging {
   def actual365NL(
                    @ApiParam(value = "from date", required = true)
                    @PathParam("fromdate")
-                   @Path("/daycount/{fromdate}/{todate}/actual365nl") fromdate: Long,
+                   @Path("/daycount/{fromdate}/{todate}/Act365NL/DC") fromdate: Long,
                    @ApiParam(value = "to date", required = true)
                    @PathParam("todate")
-                   @Path("/daycount/{fromdate}/{todate}/actual365nl")todate: Long) = Action {
+                   @Path("/daycount/{fromdate}/{todate}/Act365NL/DC")todate: Long) = Action {
 
     DayCountController.invocationActual365NL.mark
 
@@ -378,10 +378,10 @@ class DayCountController extends BaseApiController with Logging {
   def actual365NLYF(
                      @ApiParam(value = "from date", required = true)
                      @PathParam("fromdate")
-                     @Path("/daycount/{fromdate}/{todate}/actual365nlyf") fromdate: Long,
+                     @Path("/daycount/{fromdate}/{todate}/Act365NL/YF") fromdate: Long,
                      @ApiParam(value = "to date", required = true)
                      @PathParam("todate")
-                     @Path("/daycount/{fromdate}/{todate}/actual365nlyf") todate: Long) = Action {
+                     @Path("/daycount/{fromdate}/{todate}/Act365NL/YF") todate: Long) = Action {
 
     DayCountController.invocationActual365NLYF.mark
 
