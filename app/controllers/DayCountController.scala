@@ -397,7 +397,7 @@ class DayCountController extends BaseApiController with Logging {
 
       val yf :Double = Actual365(ACT365NL).yearFraction(startDate, endDate)
 
-      val res = new SingleDoubleValue(yf.toDouble)
+      val res = new SingleDoubleValue(yf)
 
       JsonResponse(res)
 
@@ -414,10 +414,18 @@ class DayCountController extends BaseApiController with Logging {
 
   // end 365NL
 
+
+
+
+  // begin Actual/Actual (ISDA || HISTORICAL || ACTUAL365) && (AFB || EURO)
+
+
 }
 
 
 object DayCountController {
+
+  // 360 method instrumentation
 
   val invocationActual360 : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual360")
   var invocationActual360Timer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual360Timer")
@@ -426,6 +434,7 @@ object DayCountController {
   var invocationActual360YFTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual360YFTimer")
 
 
+  // 365 method instrumentation
 
   val invocationActual365F : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365F")
   var invocationActual365FTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365YFFTimer")
@@ -443,12 +452,11 @@ object DayCountController {
   var invocationActual365NLYFTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365NLYFTimer")
 
 
-
-
   val invocationActual365L : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365L")
   var invocationActual365LTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365LTimer")
 
   val invocationActual365LYF : Meter = Instrumentation.metrics.meter(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365LYF")
   var invocationActual365LYFTimer : Timer  = Instrumentation.metrics.timer(DayCountController.getClass.getCanonicalName + "." + "invocation-actual365LYFTimer")
+
 
 }
