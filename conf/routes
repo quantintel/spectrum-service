@@ -61,25 +61,42 @@ GET            /date/today/:n/decr                              @controllers.Dat
 
 GET            /api-docs/daycount                               controllers.ApiHelpController.getResource(path = "/daycount")
 
-GET            /daycount/:fromdate/:todate/actual360            @controllers.DayCountController.actual360(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/actual360yf          @controllers.DayCountController.actual360YF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act360/DC            @controllers.DayCountController.actual360(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act360/YF            @controllers.DayCountController.actual360YF(fromdate: Long, todate: Long)
 
-GET            /daycount/:fromdate/:todate/actual365f           @controllers.DayCountController.actual365F(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/actual365fyf         @controllers.DayCountController.actual365FYF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act365F/DC           @controllers.DayCountController.actual365F(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Actual365F/YF         @controllers.DayCountController.actual365FYF(fromdate: Long, todate: Long)
 
-GET            /daycount/:fromdate/:todate/actual365l           @controllers.DayCountController.actual365L(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/actual365lyf         @controllers.DayCountController.actual365LYF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act365L/DC           @controllers.DayCountController.actual365L(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act365L/YF           @controllers.DayCountController.actual365LYF(fromdate: Long, todate: Long)
 
-GET            /daycount/:fromdate/:todate/actual365nl          @controllers.DayCountController.actual365NL(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/actual365nlyf        @controllers.DayCountController.actual365NLYF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act365NL/DC          @controllers.DayCountController.actual365NL(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act365NL/YF          @controllers.DayCountController.actual365NLYF(fromdate: Long, todate: Long)
 
 # Act Act day count methods
 
-GET            /daycount/:fromdate/:todate/actActISMA         @controllers.DayCountActActController.actActISMA(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/actActISMAYF       @controllers.DayCountActActController.actActISMAYF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/ActAct/ISMA/DC       @controllers.DayCountActActController.actActISMA(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/ActAct/ISMA/YF       @controllers.DayCountActActController.actActISMAYF(fromdate: Long, todate: Long)
 
-GET            /daycount/:fromdate/:todate/actActBOND         @controllers.DayCountActActController.actActBOND(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/actActBONDYF       @controllers.DayCountActActController.actActBONDYF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/ActAct/Bond/DC       @controllers.DayCountActActController.actActBOND(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/ActAct/Bond/YF       @controllers.DayCountActActController.actActBONDYF(fromdate: Long, todate: Long)
+
+
+GET            /daycount/:fromdate/:todate/ActAct/ISDA/DC       @controllers.DayCountActActController.actActISDA(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/ActAct/ISDA/YF       @controllers.DayCountActActController.actActISDAYF(fromdate: Long, todate: Long)
+
+GET            /daycount/:fromdate/:todate/ActAct/Historical/DC       @controllers.DayCountActActController.actActHistorical(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/ActAct/Historical/YF       @controllers.DayCountActActController.actActHistoricalYF(fromdate: Long, todate: Long)
+
+GET            /daycount/:fromdate/:todate/ActAct/Act365/DC    @controllers.DayCountActActController.actAct365(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/ActAct/Act365/YF    @controllers.DayCountActActController.actAct365YF(fromdate: Long, todate: Long)
+
+GET            /daycount/:fromdate/:todate/ActAct/AFB/DC       @controllers.DayCountActActController.actActAFB(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/ActAct/AFB/YF       @controllers.DayCountActActController.actActAFBYF(fromdate: Long, todate: Long)
+
+GET            /daycount/:fromdate/:todate/ActAct/EURO/DC       @controllers.DayCountActActController.actActEURO(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/ActAct/EURO/YF       @controllers.DayCountActActController.actActEUROYF(fromdate: Long, todate: Long)
+
 
 # root url
 GET            /                                                controllers.Application.index

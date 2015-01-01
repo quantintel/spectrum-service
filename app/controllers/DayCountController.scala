@@ -140,7 +140,7 @@ class DayCountController extends BaseApiController with Logging {
 
   @ApiOperation(
     nickname = "actual365F",
-    value = "day count using the Actual/360F method",
+    value = "day count using the Actual/365F method",
     notes = "returns the day count given a start and end date as serial numbers",
     response = classOf[model.SingleLongValue],
     httpMethod = "GET")
@@ -184,7 +184,7 @@ class DayCountController extends BaseApiController with Logging {
 
   @ApiOperation(
     nickname = "actual365Fyf",
-    value = "day count fraction using the Actual/360F method",
+    value = "day count fraction using the Actual/365F method",
     notes = "returns the day count fraction given a start and end date as serial numbers",
     response = classOf[model.SingleDoubleValue],
     httpMethod = "GET")
@@ -232,7 +232,7 @@ class DayCountController extends BaseApiController with Logging {
 
   @ApiOperation(
     nickname = "actual365L",
-    value = "day count using the Actual/360L method",
+    value = "day count using the Actual/365L method",
     notes = "returns the day count given a start and end date as serial numbers",
     response = classOf[model.SingleLongValue],
     httpMethod = "GET")
@@ -277,7 +277,7 @@ class DayCountController extends BaseApiController with Logging {
 
   @ApiOperation(
     nickname = "actual365Lyf",
-    value = "day count fraction using the Actual/360l method",
+    value = "day count fraction using the Actual/365L method",
     notes = "returns the day count fraction given a start and end date as serial numbers",
     response = classOf[model.SingleDoubleValue],
     httpMethod = "GET")
@@ -306,7 +306,7 @@ class DayCountController extends BaseApiController with Logging {
 
       val yf :Double = Actual365(ACT365L).yearFraction(startDate, endDate)
 
-      val res = new SingleDoubleValue(yf.toDouble)
+      val res = new SingleDoubleValue(yf)
 
       JsonResponse(res)
 
@@ -324,7 +324,7 @@ class DayCountController extends BaseApiController with Logging {
 
   @ApiOperation(
     nickname = "actual365nl",
-    value = "day count using the Actual/360NL method",
+    value = "day count using the Actual/365NL method",
     notes = "returns the day count given a start and end date as serial numbers",
     response = classOf[model.SingleLongValue],
     httpMethod = "GET")
@@ -368,7 +368,7 @@ class DayCountController extends BaseApiController with Logging {
 
   @ApiOperation(
     nickname = "actual365nlyf",
-    value = "day count fraction using the Actual/360NL method",
+    value = "day count fraction using the Actual/365NL method",
     notes = "returns the day count fraction given a start and end date as serial numbers",
     response = classOf[model.SingleDoubleValue],
     httpMethod = "GET")
