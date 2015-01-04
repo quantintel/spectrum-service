@@ -10,7 +10,14 @@ import play.api.mvc.Action
 import org.quantintel.ql.time.{Date => Dt}
 
 /**
+ * This controller supports the following day count method invocations:
+ *
+ * A. ActualActual(BOND) || ActualActual(ISMA)
+ * B. ActualActual(ISDA) || ActualActual(HISTORICAL) || ActualActual(ACTUAL365)
+ * C. ActualActual(AFB) || ActualActual(EURO)
+ *
  * @author Paul Bernard
+ *
  */
 @Api(value ="/daycount",
   description = "Day count related operations")
@@ -36,6 +43,7 @@ class DayCountActActController extends BaseApiController with Logging  {
     val endDate = Dt(todate)
 
     ActualActual(ISMA).dayCount(startDate, endDate)
+
 
   }
 
