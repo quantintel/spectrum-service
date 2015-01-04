@@ -12,9 +12,10 @@ import org.quantintel.ql.time.{Date => Dt}
 /**
  * This controller supports the following day count method invocations:
  *
- * A. ActualActual(BOND) || ActualActual(ISMA)
- * B. ActualActual(ISDA) || ActualActual(HISTORICAL) || ActualActual(ACTUAL365)
- * C. ActualActual(AFB) || ActualActual(EURO)
+ * A. /ActAct/Bond || /ActAct/ISMA = ActualActual(BOND) || ActualActual(ISMA)
+ * B. /ActAct/ISDA || /ActAct/HISTORICAL || /ActAct/Act365 =
+ *                ActualActual(ISDA) || ActualActual(HISTORICAL) || ActualActual(ACTUAL365)
+ * C. /ActAct/AFB || /ActAct/EURO =  ActualActual(AFB) || ActualActual(EURO)
  *
  * @author Paul Bernard
  *
