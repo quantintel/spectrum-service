@@ -5,73 +5,77 @@
 #
 
 # Swagger reference URI
-GET            /api-docs                                        controllers.ApiHelpController.getResources
+GET            /api-docs                               controllers.ApiHelpController.getResources
 
 # OPTIONS to support hosting UI off domain
 
-OPTIONS        /*wholepath                                      @controllers.DateController.getOptions(wholepath)
-GET            /api-docs/admin                                  controllers.ApiHelpController.getResource(path = "/admin")
-GET            /admin/health                                    controllers.HealthController.getHealth
-GET            /admin/ping                                      controllers.HealthController.ping
+OPTIONS        /*wholepath                             @controllers.DateController.getOptions(wholepath)
+GET            /api-docs/admin                         controllers.ApiHelpController.getResource(path = "/admin")
+GET            /admin/health                           controllers.HealthController.getHealth
+GET            /admin/ping                             controllers.HealthController.ping
+
 
 # functions available on today's date
 
-GET            /api-docs/date                                   controllers.ApiHelpController.getResource(path = "/date")
+GET            /api-docs/date                          controllers.ApiHelpController.getResource(path = "/date")
 
-GET            /date/today/serialNumber                         @controllers.DateController.today
-GET            /date/:mm/:dd/:yyyy/serialNumber                 @controllers.DateController.serialNumber(mm: Int, dd: Int, yyyy: Int)
-GET            /date/today/mmddyyyy                             @controllers.DateController.todaySimpleFmt
-GET            /date/today/weekday                              @controllers.DateController.weekday
-GET            /date/today/year                                 @controllers.DateController.year
-GET            /date/today/month                                @controllers.DateController.month
-GET            /date/today/dayOfMonth                           @controllers.DateController.dayOfMonth
-GET            /date/today/dayOfYear                            @controllers.DateController.dayOfYear
-GET            /date/today/isLeapYear                           @controllers.DateController.isLeapYear
+GET            /date/today/serialNumber                @controllers.DateController.today
+GET            /date/:mm/:dd/:yyyy/serialNumber        @controllers.DateController.serialNumber(mm: Int, dd: Int, yyyy: Int)
+GET            /date/today/mmddyyyy                    @controllers.DateController.todaySimpleFmt
+GET            /date/today/weekday                     @controllers.DateController.weekday
+GET            /date/today/year                        @controllers.DateController.year
+GET            /date/today/month                       @controllers.DateController.month
+GET            /date/today/dayOfMonth                  @controllers.DateController.dayOfMonth
+GET            /date/today/dayOfYear                   @controllers.DateController.dayOfYear
+GET            /date/today/isLeapYear                  @controllers.DateController.isLeapYear
 
 
 # functions available on a date given a date's serial number.
 
 
-GET            /date/:serialNumber/mmddyyyy                     @controllers.DateController.simpleFmt(serialNumber: Long)
-GET            /date/:serialNumber/weekday                      @controllers.DateController.dtWeekday(serialNumber: Long)
-GET            /date/:serialNumber/year                         @controllers.DateController.dtYear(serialNumber: Long)
-GET            /date/:serialNumber/month                        @controllers.DateController.dtMonth(serialNumber: Long)
-GET            /date/:serialNumber/dayOfMonth                   @controllers.DateController.dtDayOfMonth(serialNumber: Long)
-GET            /date/:serialNumber/dayOfYear                    @controllers.DateController.dtDayOfYear(serialNumber: Long)
-GET            /date/:serialNumber/isLeapYear                   @controllers.DateController.dtIsLeapYear(serialNumber: Long)
+GET            /date/:serialNumber/mmddyyyy            @controllers.DateController.simpleFmt(serialNumber: Long)
+GET            /date/:serialNumber/weekday             @controllers.DateController.dtWeekday(serialNumber: Long)
+GET            /date/:serialNumber/year                @controllers.DateController.dtYear(serialNumber: Long)
+GET            /date/:serialNumber/month               @controllers.DateController.dtMonth(serialNumber: Long)
+GET            /date/:serialNumber/dayOfMonth          @controllers.DateController.dtDayOfMonth(serialNumber: Long)
+GET            /date/:serialNumber/dayOfYear           @controllers.DateController.dtDayOfYear(serialNumber: Long)
+GET            /date/:serialNumber/isLeapYear          @controllers.DateController.dtIsLeapYear(serialNumber: Long)
 
 # functions available on date given a dates formatted string
 
 
-GET            /date/:mm/:dd/:yyyy/weekday                      @controllers.DateController.dtstrWeekday(mm: Int, dd: Int, yyyy: Int)
-GET            /date/:mm/:dd/:yyyy/year                         @controllers.DateController.dtstrYear(mm: Int, dd: Int, yyyy: Int)
-GET            /date/:mm/:dd/:yyyy/month                        @controllers.DateController.dtstrMonth(mm: Int, dd: Int, yyyy: Int)
-GET            /date/:mm/:dd/:yyyy/dayOfMonth                   @controllers.DateController.dtstrDayOfMonth(mm: Int, dd: Int, yyyy: Int)
-GET            /date/:mm/:dd/:yyyy/dayOfYear                    @controllers.DateController.dtstrDayOfYear(mm: Int, dd: Int, yyyy: Int)
-GET            /date/:mm/:dd/:yyyy/isLeapYear                   @controllers.DateController.dtstrIsLeapYear(mm: Int, dd: Int, yyyy: Int)
+GET            /date/:mm/:dd/:yyyy/weekday             @controllers.DateController.dtstrWeekday(mm: Int, dd: Int, yyyy: Int)
+GET            /date/:mm/:dd/:yyyy/year                @controllers.DateController.dtstrYear(mm: Int, dd: Int, yyyy: Int)
+GET            /date/:mm/:dd/:yyyy/month               @controllers.DateController.dtstrMonth(mm: Int, dd: Int, yyyy: Int)
+GET            /date/:mm/:dd/:yyyy/dayOfMonth          @controllers.DateController.dtstrDayOfMonth(mm: Int, dd: Int, yyyy: Int)
+GET            /date/:mm/:dd/:yyyy/dayOfYear           @controllers.DateController.dtstrDayOfYear(mm: Int, dd: Int, yyyy: Int)
+GET            /date/:mm/:dd/:yyyy/isLeapYear          @controllers.DateController.dtstrIsLeapYear(mm: Int, dd: Int, yyyy: Int)
 
 # functions for date math
 
-GET            /date/today/incr                                 @controllers.DateController.incr
-GET            /date/today/:n/incr                              @controllers.DateController.incrBy(n: Int)
-GET            /date/today/decr                                 @controllers.DateController.decr
-GET            /date/today/:n/decr                              @controllers.DateController.decrBy(n: Int)
+GET            /date/today/incr                        @controllers.DateController.incr
+GET            /date/today/:n/incr                     @controllers.DateController.incrBy(n: Int)
+GET            /date/today/decr                        @controllers.DateController.decr
+GET            /date/today/:n/decr                     @controllers.DateController.decrBy(n: Int)
+
 
 # functions available which implement day count and year fraction calculations
 
 GET            /api-docs/daycount                               controllers.ApiHelpController.getResource(path = "/daycount")
 
-GET            /daycount/:fromdate/:todate/Act360/DC            @controllers.DayCountController.actual360(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/Act360/YF            @controllers.DayCountController.actual360YF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act360/DC            @controllers.DayCountAct360Controller.actual360(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act360/YF            @controllers.DayCountAct360Controller.actual360YF(fromdate: Long, todate: Long)
 
-GET            /daycount/:fromdate/:todate/Act365F/DC           @controllers.DayCountController.actual365F(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/Actual365F/YF         @controllers.DayCountController.actual365FYF(fromdate: Long, todate: Long)
+# Act 365 day count methods
 
-GET            /daycount/:fromdate/:todate/Act365L/DC           @controllers.DayCountController.actual365L(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/Act365L/YF           @controllers.DayCountController.actual365LYF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act365F/DC           @controllers.DayCountAct365Controller.actual365F(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Actual365F/YF         @controllers.DayCountAct365Controller.actual365FYF(fromdate: Long, todate: Long)
 
-GET            /daycount/:fromdate/:todate/Act365NL/DC          @controllers.DayCountController.actual365NL(fromdate: Long, todate: Long)
-GET            /daycount/:fromdate/:todate/Act365NL/YF          @controllers.DayCountController.actual365NLYF(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act365L/DC           @controllers.DayCountAct365Controller.actual365L(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act365L/YF           @controllers.DayCountAct365Controller.actual365LYF(fromdate: Long, todate: Long)
+
+GET            /daycount/:fromdate/:todate/Act365NL/DC          @controllers.DayCountAct365Controller.actual365NL(fromdate: Long, todate: Long)
+GET            /daycount/:fromdate/:todate/Act365NL/YF          @controllers.DayCountAct365Controller.actual365NLYF(fromdate: Long, todate: Long)
 
 # Act Act day count methods
 
@@ -99,7 +103,7 @@ GET            /daycount/:fromdate/:todate/ActAct/EURO/YF       @controllers.Day
 
 
 # root url
-GET            /                                                controllers.Application.index
+GET            /                                       controllers.Application.index
 
 # Map static resources from the /public folder to the /assets URL path
-GET            /assets/*file                                    controllers.Assets.at(path="/public", file)
+GET            /assets/*file                           controllers.Assets.at(path="/public", file)
