@@ -21,11 +21,23 @@
 package controllers
 
 import grizzled.slf4j.Logging
+import play.api.mvc.Action
 
 /**
  * @author Paul Bernard
  */
 class DayCount30_360Controller extends BaseApiController with Logging {
+
+  /**
+   *
+   * @param path
+   * @return
+   */
+  def getOptions(path: String) = Action {
+    implicit request => JsonResponse(new value.ApiResponse(200, "Ok"))
+  }
+
+
 
 }
 
