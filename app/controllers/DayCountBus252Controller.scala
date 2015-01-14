@@ -59,15 +59,19 @@ class DayCountBus252Controller extends BaseApiController with Logging {
   def bus252(
                   @ApiParam(value = "from date", required = true)
                   @PathParam("fromdate")
-                  @Path("/daycount/{fromdate}/{todate}/{calendar}/Bus252/DC") fromdate: Long,
+                  @Path("/daycount/{fromdate}/{todate}/{calendar}/{session}/Bus252/DC") fromdate: Long,
 
                   @ApiParam(value = "to date", required = true)
                   @PathParam("todate")
-                  @Path("/daycount/{fromdate}/{todate}/{calendar}/Bus252/DC") todate: Long,
+                  @Path("/daycount/{fromdate}/{todate}/{calendar}/{session}/Bus252/DC") todate: Long,
 
                   @ApiParam(value = "calendar id", required = true)
                   @PathParam("calendar")
-                  @Path("/daycount/{fromdate}/{todate}/{calendar}/Bus252/DC") calendar: String) = Action {
+                  @Path("/daycount/{fromdate}/{todate}/{calendar}/{session}/Bus252/DC") calendar: String,
+
+                  @ApiParam(value = "session id", required = true)
+                  @PathParam("session")
+                  @Path("/daycount/{fromdate}/{todate}/{calendar}/{session}/Bus252/DC") session: String) = Action {
 
     DayCountBus252Controller.invocationBus252.mark
 
@@ -82,7 +86,7 @@ class DayCountBus252Controller extends BaseApiController with Logging {
       val startDate = Dt(fromdate)
       val endDate = Dt(todate)
 
-      val cal = Cache.calendar.get(calendar)
+      val cal = Cache.get(session).calendar.get(calendar)
       cal match {
         case Some(f) =>{
 
